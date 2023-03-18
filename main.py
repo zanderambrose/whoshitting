@@ -5,10 +5,10 @@ if __name__ == "__main__":
     vangaurd = Vanguard("Village Vanguard", "https://villagevanguard.com/")
     smalls = Smalls("Smalls", "https://www.smallslive.com/")
     mezzrow = Mezzrow("Mezzrow", "https://www.smallslive.com/")
-    birdland = Birdland("Birdland", "https://www.smallslive.com/")
-    bluenote = BlueNote("Blue Note", "https://www.smallslive.com/")
-    dizzys = Dizzys("Dizzys", "https://www.smallslive.com/")
-    smoke = Smoke("Smoke", "https://www.smallslive.com/")
+    birdland = Birdland("Birdland", "https://birdlandjazz.com/")
+    bluenote = BlueNote("Blue Note", "https://www.bluenotejazz.com/nyc/")
+    dizzys = Dizzys("Dizzys", "https://2023.jazz.org/dizzys-club#upnext")
+    smoke = Smoke("Smoke", "https://smokejazz.com/")
 
     clubs = [vangaurd, smalls, mezzrow, birdland, bluenote, dizzys, smoke]
     for club in clubs:
