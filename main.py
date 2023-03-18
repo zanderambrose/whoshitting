@@ -21,12 +21,13 @@ class Venue:
     def get_band_name(self):
         soup = self.make_soup()
         band_name = soup.find("h1")
-        print(f'BAND NAME: {band_name}')
+        self.band_name = band_name.text.strip()
 
-    def fetch(self):
+    def run(self):
         self.get_band_name()
+        print(f'Band name: {self.band_name}')
 
 
 if __name__ == "__main__":
     vangaurd = Venue("Village Vanguard", "https://villagevanguard.com/")
-    vangaurd.fetch()
+    vangaurd.run()
