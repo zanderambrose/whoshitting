@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import requests
 
 
 class Venue:
@@ -6,9 +7,14 @@ class Venue:
         self.name = name
         self.url = url
 
-    def visit():
-        pass
+    def visit(self):
+        try:
+            page = requests.get(self.url)
+            return page.text
+        except:
+            print(f'Error visiting url for {self.name}')
 
 
 if __name__ == "__main__":
-    print("hello world")
+    vangaurd = Venue("Village Vanguard", "https://villagevanguard.com/")
+    vangaurd.visit()
