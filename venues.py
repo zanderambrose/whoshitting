@@ -36,5 +36,34 @@ class Venue:
         """
         Method to be called for getting all important data
         """
-        self.get_band_name()
-        print(f'Band name for {self.name}: {self.band_name}')
+        # self.get_band_name()
+        # print(f'Band name for {self.name}: {self.band_name}')
+        print(f'{self.venue_name}')
+
+
+class Vanguard(Venue):
+    pass
+
+
+class Smalls(Venue):
+    pass
+
+
+class Mezzrow(Venue):
+    pass
+
+
+class BlueNote(Venue):
+    pass
+
+
+class Smoke(Venue):
+    pass
+
+
+class Birdland(Venue):
+    pass
+
+
+class Dizzys(Venue):
+    pass
