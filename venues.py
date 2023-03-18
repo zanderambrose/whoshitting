@@ -1,8 +1,9 @@
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+from abc import ABC, abstractmethod
 
 
-class Venue:
+class Venue(ABC):
     def __init__(self, name, url):
         self.venue_name = name
         self.url = url
@@ -24,13 +25,12 @@ class Venue:
         content = self.visit()
         return BeautifulSoup(content, 'html.parser')
 
+    @abstractmethod
     def get_band_name(self):
         """
         Method to be implemented per Venue to return the band playing
         """
-        soup = self.make_soup()
-        band_name = soup.find("h1")
-        self.band_name = band_name.text.strip()
+        pass
 
     def run(self):
         """
@@ -42,7 +42,12 @@ class Venue:
 
 
 class Vanguard(Venue):
-    pass
+
+    def get_band_name(self):
+        soup = self.make_soup()
+        band_name = soup.find("h1")
+        self.band_name = band_name.text.strip()
+        return super().get_band_name()
 
 
 class Smalls(Venue):
