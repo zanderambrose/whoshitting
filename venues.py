@@ -51,24 +51,36 @@ class Vanguard(Venue):
 
 
 class Smalls(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
 
 
 class Mezzrow(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
 
 
 class BlueNote(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
 
 
 class Smoke(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
 
 
 class Birdland(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
 
 
 class Dizzys(Venue):
-    pass
+
+    def get_band_name(self):
+        pass
