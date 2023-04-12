@@ -36,9 +36,8 @@ class Venue(ABC):
         """
         Method to be called for getting all important data
         """
-        # self.get_band_name()
-        # print(f'Band name for {self.name}: {self.band_name}')
-        print(f'{self.venue_name}')
+        self.get_band_name()
+        print(f'Band name for {self.venue_name}: {self.band_name}')
 
 
 class Vanguard(Venue):
@@ -53,7 +52,12 @@ class Vanguard(Venue):
 class Smalls(Venue):
 
     def get_band_name(self):
-        pass
+        soup = self.make_soup()
+        early_set_container = soup.find(
+            class_="event-display-today-and-tomorrow")
+        early_set_data = early_set_container.find_all("a")
+        self.band_name = early_set_data[0]["aria-label"].split(", ")[0]
+        return super().get_band_name()
 
 
 class Mezzrow(Venue):
