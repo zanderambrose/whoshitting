@@ -104,7 +104,7 @@ class Smalls(SmallsLive):
         return self.get_band_name(3, late_set=True)
 
 
-class Mezzrow(Venue):
+class Mezzrow(SmallsLive):
 
     def get_early_set(self):
         return self.get_band_name(2)
