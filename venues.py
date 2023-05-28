@@ -8,6 +8,7 @@ class Venue(ABC):
         self.venue_name = name
         self.url = url
         self.artists = []
+        self.artists_late = []
         self.make_soup()
 
     def visit(self):
@@ -42,8 +43,12 @@ class Venue(ABC):
         pass
 
     def print_data(self):
+        print("**********EARLY**************")
         print(f'Band name for {self.venue_name}: {self.band_name}')
         print(f'Sideman for {self.band_name}: {self.artists}')
+        print("**********LATE**************")
+        print(f'Band name for {self.venue_name}: {self.band_name_late}')
+        print(f'Sideman for {self.band_name_late}: {self.artists_late}')
 
     def run(self):
         """
@@ -67,31 +72,34 @@ class Vanguard(Venue):
 
 class SmallsLive(Venue):
     def get_band_name(self, set_number, late_set=False):
-        early_set_container = self.soup.find_all(
+        set_container = self.soup.find_all(
             'article', class_="event-display-today-and-tomorrow")[set_number]
-        early_set_data = early_set_container.find_all("a")
+        set_data = set_container.find_all("a")
+        name = set_data[0]["aria-label"].split(", ")[0]
+
         if late_set:
-            self.band_name_late = early_set_data[0]["aria-label"].split(", ")[
-                0]
+            self.band_name_late = name
         else:
-            self.band_name = early_set_data[0]["aria-label"].split(", ")[0]
-        return super().get_band_name()
+            self.band_name = name
 
-    def get_artists(self):
-        early_set_container = self.soup.find_all(
-            'article', class_="event-display-today-and-tomorrow")[1]
+    def get_artists(self, set_number, late_set=False):
+        set_container = self.soup.find_all(
+            'article', class_="event-display-today-and-tomorrow")[set_number]
 
-        artists = early_set_container.select("div > a")
+        artists = set_container.select("div > a")
 
         for artist in artists:
-            self.artists.append(artist.text.strip())
-
-        return super().get_artists()
+            artist_text = artist.text.strip()
+            if late_set:
+                self.artists_late.append(artist_text)
+            else:
+                self.artists.append(artist_text)
 
     def run(self):
         self.get_early_set()
         self.get_late_set()
-        self.get_artists()
+        self.get_artists_early()
+        self.get_artists_late()
         self.print_data()
 
 
@@ -103,14 +111,25 @@ class Smalls(SmallsLive):
     def get_late_set(self):
         return self.get_band_name(3, late_set=True)
 
+    def get_artists_early(self):
+        return self.get_artists(1)
+
+    def get_artists_late(self):
+        return self.get_artists(3, late_set=True)
+
 
 class Mezzrow(SmallsLive):
-
     def get_early_set(self):
         return self.get_band_name(2)
 
     def get_late_set(self):
         return self.get_band_name(4, late_set=True)
+
+    def get_artists_early(self):
+        return self.get_artists(2)
+
+    def get_artists_late(self):
+        return self.get_artists(4, late_set=True)
 
 
 class BlueNote(Venue):

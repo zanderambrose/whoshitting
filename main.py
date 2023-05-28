@@ -10,7 +10,7 @@ if __name__ == "__main__":
     dizzys = Dizzys("Dizzys", "https://2023.jazz.org/dizzys-club#upnext")
     smoke = Smoke("Smoke", "https://smokejazz.com/")
 
-    clubs = [smalls]
+    clubs = [smalls, mezzrow]
     # clubs = [vangaurd, smalls, mezzrow, birdland, bluenote, dizzys, smoke]
     for club in clubs:
         club.run()
