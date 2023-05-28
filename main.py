@@ -1,5 +1,10 @@
-from venues import Vanguard, Smalls, Mezzrow, Birdland, BlueNote, Dizzys, Smoke
-
+from src.vanguard import Vanguard
+from src.smalls import Smalls
+from src.mezzrow import Mezzrow
+from src.birdland import Birdland
+from src.bluenote import BlueNote
+from src.dizzys import Dizzys
+from src.smoke import Smoke
 
 if __name__ == "__main__":
     vangaurd = Vanguard("Village Vanguard", "https://villagevanguard.com/")
