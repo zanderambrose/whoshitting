@@ -1,4 +1,4 @@
-from venues import Venue
+from .venues import Venue
 
 
 class SmallsLive(Venue):
@@ -26,9 +26,23 @@ class SmallsLive(Venue):
             else:
                 self.artists.append(artist_text)
 
+    def get_event_img(self, set_number, late_set=False):
+        set_container = self.soup.find_all(
+            'article', class_="event-display-today-and-tomorrow")[set_number]
+
+        set_image = set_container.select("img")
+        src_attribute = set_image[0]["src"]
+
+        if late_set:
+            self.event_img_late = src_attribute
+        else:
+            self.event_img = src_attribute
+
     def run(self):
         self.get_early_set()
         self.get_late_set()
         self.get_artists_early()
         self.get_artists_late()
+        self.get_event_img_early()
+        self.get_event_img_late()
         self.print_data()

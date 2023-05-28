@@ -1,4 +1,4 @@
-from venues import Venue
+from .venues import Venue
 
 
 class Dizzys(Venue):

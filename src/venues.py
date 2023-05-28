@@ -46,9 +46,11 @@ class Venue(ABC):
         print("**********EARLY**************")
         print(f'Band name for {self.venue_name}: {self.band_name}')
         print(f'Sideman for {self.band_name}: {self.artists}')
+        print(f'Event image for {self.band_name}: {self.event_img}')
         print("**********LATE**************")
         print(f'Band name for {self.venue_name}: {self.band_name_late}')
         print(f'Sideman for {self.band_name_late}: {self.artists_late}')
+        print(f'Event image for {self.band_name}: {self.event_img_late}')
 
     def run(self):
         """

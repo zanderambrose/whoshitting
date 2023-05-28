@@ -1,4 +1,4 @@
-from smallslive import SmallsLive
+from .smallslive import SmallsLive
 
 
 class Smalls(SmallsLive):
@@ -14,3 +14,9 @@ class Smalls(SmallsLive):
 
     def get_artists_late(self):
         return self.get_artists(3, late_set=True)
+
+    def get_event_img_early(self):
+        return self.get_event_img(1)
+
+    def get_event_img_late(self):
+        return self.get_event_img(3, late_set=True)
