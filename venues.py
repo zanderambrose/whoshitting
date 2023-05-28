@@ -41,14 +41,17 @@ class Venue(ABC):
         """
         pass
 
+    def print_data(self):
+        print(f'Band name for {self.venue_name}: {self.band_name}')
+        print(f'Sideman for {self.band_name}: {self.artists}')
+
     def run(self):
         """
         Method to be called for getting all important data
         """
         self.get_band_name()
         self.get_artists()
-        print(f'Band name for {self.venue_name}: {self.band_name}')
-        print(f'Sideman for {self.band_name}: {self.artists}')
+        self.print_data()
 
 
 class Vanguard(Venue):
@@ -62,18 +65,21 @@ class Vanguard(Venue):
         pass
 
 
-class Smalls(Venue):
-
-    def get_band_name(self):
-        early_set_container = self.soup.find_all('article',
-                                                 class_="event-display-today-and-tomorrow")[1]
+class SmallsLive(Venue):
+    def get_band_name(self, set_number, late_set=False):
+        early_set_container = self.soup.find_all(
+            'article', class_="event-display-today-and-tomorrow")[set_number]
         early_set_data = early_set_container.find_all("a")
-        self.band_name = early_set_data[0]["aria-label"].split(", ")[0]
+        if late_set:
+            self.band_name_late = early_set_data[0]["aria-label"].split(", ")[
+                0]
+        else:
+            self.band_name = early_set_data[0]["aria-label"].split(", ")[0]
         return super().get_band_name()
 
     def get_artists(self):
-        early_set_container = self.soup.find_all('article',
-                                                 class_="event-display-today-and-tomorrow")[1]
+        early_set_container = self.soup.find_all(
+            'article', class_="event-display-today-and-tomorrow")[1]
 
         artists = early_set_container.select("div > a")
 
@@ -82,14 +88,29 @@ class Smalls(Venue):
 
         return super().get_artists()
 
+    def run(self):
+        self.get_early_set()
+        self.get_late_set()
+        self.get_artists()
+        self.print_data()
+
+
+class Smalls(SmallsLive):
+
+    def get_early_set(self):
+        return self.get_band_name(1)
+
+    def get_late_set(self):
+        return self.get_band_name(3, late_set=True)
+
 
 class Mezzrow(Venue):
 
-    def get_band_name(self):
-        pass
+    def get_early_set(self):
+        return self.get_band_name(2)
 
-    def get_artists(self):
-        pass
+    def get_late_set(self):
+        return self.get_band_name(4, late_set=True)
 
 
 class BlueNote(Venue):
