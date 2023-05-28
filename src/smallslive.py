@@ -1,7 +1,7 @@
 from .venues import Venue
 
 
-class SmallsLive(Venue):
+class SmallsLiveBase(Venue):
     def get_band_name(self, set_number, late_set=False):
         set_container = self.soup.find_all(
             'article', class_="event-display-today-and-tomorrow")[set_number]
@@ -46,3 +46,41 @@ class SmallsLive(Venue):
         self.get_event_img_early()
         self.get_event_img_late()
         self.print_data()
+
+
+class SmallsLive(SmallsLiveBase):
+    def get_early_set(self):
+        if self.venue_name == "Smalls":
+            return self.get_band_name(1)
+        else:
+            return self.get_band_name(2)
+
+    def get_late_set(self):
+        if self.venue_name == "Smalls":
+            return self.get_band_name(3, late_set=True)
+        else:
+            return self.get_band_name(4, late_set=True)
+
+    def get_artists_early(self):
+        if self.venue_name == "Smalls":
+            return self.get_artists(1)
+        else:
+            return self.get_artists(2)
+
+    def get_artists_late(self):
+        if self.venue_name == "Smalls":
+            return self.get_artists(3, late_set=True)
+        else:
+            return self.get_artists(4, late_set=True)
+
+    def get_event_img_early(self):
+        if self.venue_name == "Smalls":
+            return self.get_event_img(1)
+        else:
+            return self.get_event_img(2)
+
+    def get_event_img_late(self):
+        if self.venue_name == "Smalls":
+            return self.get_event_img(3, late_set=True)
+        else:
+            return self.get_event_img(4, late_set=True)
