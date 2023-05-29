@@ -38,15 +38,6 @@ class SmallsLiveBase(Venue):
         else:
             self.event_img = src_attribute
 
-    def run(self):
-        self.get_early_set()
-        self.get_late_set()
-        self.get_artists_early()
-        self.get_artists_late()
-        self.get_event_img_early()
-        self.get_event_img_late()
-        self.print_data()
-
 
 class SmallsLive(SmallsLiveBase):
     def get_early_set(self):
@@ -84,3 +75,12 @@ class SmallsLive(SmallsLiveBase):
             return self.get_event_img(3, late_set=True)
         else:
             return self.get_event_img(4, late_set=True)
+
+    def run(self):
+        self.get_early_set()
+        self.get_late_set()
+        self.get_artists_early()
+        self.get_artists_late()
+        self.get_event_img_early()
+        self.get_event_img_late()
+        self.print_data()

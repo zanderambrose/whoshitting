@@ -9,4 +9,8 @@ class Vanguard(Venue):
         return super().get_band_name()
 
     def get_artists(self):
-        pass
+        main_content = self.soup.find_all(id="mainContent")
+        event_containers = main_content[0].find_all("div", class_="container")
+        event_container = event_containers[0]
+        band_name = event_container.find("h2")
+        print(f'band_name: {band_name}')

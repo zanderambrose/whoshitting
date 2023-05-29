@@ -1,3 +1,4 @@
+import os
 from src.vanguard import Vanguard
 from src.smalls import Smalls
 from src.mezzrow import Mezzrow
@@ -15,7 +16,9 @@ if __name__ == "__main__":
     dizzys = Dizzys("Dizzys", "https://2023.jazz.org/dizzys-club#upnext")
     smoke = Smoke("Smoke", "https://smokejazz.com/")
 
-    clubs = [smalls, mezzrow]
+    os.environ["env"] = "dev"
+
+    clubs = [vangaurd]
     # clubs = [vangaurd, smalls, mezzrow, birdland, bluenote, dizzys, smoke]
     for club in clubs:
         club.run()
