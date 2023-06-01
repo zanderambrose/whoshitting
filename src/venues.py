@@ -71,4 +71,4 @@ class Venue(ABC):
         self.make_soup()
         self.get_band_name()
         self.get_artists()
-        # self.print_data()
+        self.print_data()

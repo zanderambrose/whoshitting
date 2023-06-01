@@ -1,5 +1,5 @@
 from .venues import Venue
-from .helpers.helpers import is_all_caps, is_br_element
+from .helpers.helpers import is_all_caps, is_br_element, extract_text
 
 
 class Vanguard(Venue):
@@ -15,9 +15,17 @@ class Vanguard(Venue):
         event_container = event_containers[0]
         band_members = event_container.find_all("h4")
 
-        for group in range(len(band_members)):
-            for item in band_members[group]:
-                i = str(item)
-                uppercase_string = i[:4]
-                if not is_all_caps(uppercase_string) and not is_br_element(i):
-                    self.artists.append(i)
+        if self.band_name == "VANGUARD JAZZ ORCHESTRA":
+            for group in range(len(band_members)):
+                for item in band_members[group]:
+                    i = str(item)
+                    uppercase_string = i[:4]
+                    if not is_all_caps(uppercase_string) and not is_br_element(i):
+                        self.artists.append(i)
+        for item in band_members:
+            item = extract_text(str(item))
+            self.artists.append(item)
+
+    def print_data(self):
+        print(f'Band name for {self.venue_name}: {self.band_name}')
+        # print(f'Sideman for {self.band_name}: {self.artists}')
