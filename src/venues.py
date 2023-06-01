@@ -1,4 +1,5 @@
 import requests
+import os
 from bs4 import BeautifulSoup
 from abc import ABC, abstractmethod
 
@@ -9,14 +10,17 @@ class Venue(ABC):
         self.url = url
         self.artists = []
         self.artists_late = []
-        self.make_soup()
 
     def visit(self):
         """
-        GET request to website url to return page HTML 
+        GET request to website url to return page HTML
         """
+        print(f'Visit being called')
         try:
             page = requests.get(self.url)
+            with open(os.path.join("soup", f'{self.venue_name}.txt'), "w") as file:
+                file.write(page.text)
+
             return page.content
         except:
             print(f'Error visiting url for {self.venue_name}')
@@ -25,7 +29,15 @@ class Venue(ABC):
         """
         Create Soup object for for further processing
         """
-        content = self.visit()
+        if os.environ.get("env") == "dev":
+            try:
+                with open(os.path.join("soup", f'{self.venue_name}.txt'), "r+") as file:
+                    content = file.read()
+            except:
+                content = self.visit()
+        else:
+            content = self.visit()
+
         self.soup = BeautifulSoup(content, 'html.parser')
 
     @abstractmethod
@@ -38,7 +50,7 @@ class Venue(ABC):
     @abstractmethod
     def get_artists(self):
         """
-        Method to be implemented per Venue to return the sideman 
+        Method to be implemented per Venue to return the sideman
         """
         pass
 
@@ -56,6 +68,7 @@ class Venue(ABC):
         """
         Method to be called for getting all important data
         """
+        self.make_soup()
         self.get_band_name()
         self.get_artists()
         self.print_data()
