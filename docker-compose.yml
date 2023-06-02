@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./api
+    container_name: api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+  scraper:
+    build: ./scraper
+    container_name: scraper
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongodb/data:/data/db
