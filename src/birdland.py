@@ -1,5 +1,7 @@
 from .venues import Venue
 
+# Site is under construction - TBD
+
 
 class Birdland(Venue):
 
@@ -7,4 +9,7 @@ class Birdland(Venue):
         pass
 
     def get_artists(self):
+        pass
+
+    def get_event_img(self):
         pass
