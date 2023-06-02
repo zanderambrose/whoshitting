@@ -1,4 +1,4 @@
-FROM python:3.9.6
+FROM python:3.9.12
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -12,4 +12,6 @@ COPY . /app/
 
 EXPOSE 8000
 
-CMD echo "hello world"
+COPY entrypoint.sh /app/entrypoint.sh
+RUN ["chmod", "+x", "/app/entrypoint.sh"]
+CMD ["/app/entrypoint.sh"] 

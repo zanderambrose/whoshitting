@@ -8,9 +8,15 @@ services:
       - "8000:8000"
     depends_on:
       - mongo
+    volumes:
+      - ./api:/app
   scraper:
     build: ./scraper
     container_name: scraper
+    depends_on:
+      - mongo
+    volumes:
+      - ./scraper:/app
   mongo:
     image: mongo
     container_name: mongo
