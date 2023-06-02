@@ -26,6 +26,14 @@ class Vanguard(Venue):
             item = extract_text(str(item))
             self.artists.append(item)
 
+    def get_event_img(self):
+        main_content = self.soup.find_all(id="mainContent")
+        event_containers = main_content[0].find_all("div", class_="container")
+        event_container = event_containers[0]
+        img = event_container.find_all("img")
+        src_attribute = img[0]["src"]
+        self.event_img_late = src_attribute
+
     def print_data(self):
         print(f'Band name for {self.venue_name}: {self.band_name}')
-        # print(f'Sideman for {self.band_name}: {self.artists}')
+        print(f'Sideman for {self.band_name}: {self.artists}')
