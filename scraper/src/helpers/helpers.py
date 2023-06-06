@@ -24,3 +24,13 @@ def extract_text(string):
     clean_string = re.sub('<.*?>', '', string)
 
     return clean_string
+
+
+def build_dictionary(string_arr):
+    result_dict = {}
+    for string in string_arr:
+        name, instrument = string.split(' – ')
+        name = name.strip()
+        instrument = instrument.strip()
+        result_dict[name] = instrument
+    return result_dict

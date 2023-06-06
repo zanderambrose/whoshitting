@@ -1,5 +1,5 @@
 from .venues import Venue
-from .helpers.helpers import is_all_caps, is_br_element, extract_text
+from .helpers.helpers import is_all_caps, is_br_element, extract_text, build_dictionary
 
 
 class Vanguard(Venue):
@@ -42,3 +42,9 @@ class Vanguard(Venue):
         super().run()
         self.get_event_img()
         print(f'Event img for {self.band_name}: {self.event_img}')
+
+    def write_data(self):
+        data = build_dictionary(self.artists)
+        data["venue_name"] = self.venue_name.lower()
+        data["band_name"] = self.band_name
+        return data

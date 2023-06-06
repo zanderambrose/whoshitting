@@ -54,15 +54,22 @@ class Venue(ABC):
         """
         pass
 
+    @abstractmethod
+    def write_data(self):
+        """
+        Method to be implemented per Venue to write to mongodb 
+        """
+        pass
+
     def print_data(self):
         print("**********EARLY**************")
         print(f'Band name for {self.venue_name}: {self.band_name}')
         print(f'Sideman for {self.band_name}: {self.artists}')
         print(f'Event image for {self.band_name}: {self.event_img}')
-        print("**********LATE**************")
-        print(f'Band name for {self.venue_name}: {self.band_name_late}')
-        print(f'Sideman for {self.band_name_late}: {self.artists_late}')
-        print(f'Event image for {self.band_name}: {self.event_img_late}')
+        # print("**********LATE**************")
+        # print(f'Band name for {self.venue_name}: {self.band_name_late}')
+        # print(f'Sideman for {self.band_name_late}: {self.artists_late}')
+        # print(f'Event image for {self.band_name}: {self.event_img_late}')
 
     def run(self):
         """
@@ -72,3 +79,4 @@ class Venue(ABC):
         self.get_band_name()
         self.get_artists()
         self.print_data()
+        self.write_data()

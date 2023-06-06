@@ -77,10 +77,11 @@ class SmallsLive(SmallsLiveBase):
             return self.get_event_img(4, late_set=True)
 
     def run(self):
+        self.make_soup()
         self.get_early_set()
-        self.get_late_set()
+        # self.get_late_set()
         self.get_artists_early()
-        self.get_artists_late()
+        # self.get_artists_late()
         self.get_event_img_early()
-        self.get_event_img_late()
+        # self.get_event_img_late()
         self.print_data()
