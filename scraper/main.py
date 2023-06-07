@@ -7,16 +7,7 @@ from src.venues.bluenote import BlueNote
 from src.venues.dizzys import Dizzys
 from src.venues.smoke import Smoke
 from src.venues.scraper import WebScraper
-
-# MongoDB connection details
-MONGO_HOST = 'mongo'
-MONGO_PORT = 27017
-MONGO_DB = 'whoshittin'
-MONGO_COLLECTION = 'venue'
-MONGO_USERNAME = 'root'
-MONGO_PASSWORD = 'example'
-mongdb_uri = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}?authSource=admin"
-
+import motor.motor_asyncio
 
 if __name__ == "__main__":
     mongo_client = (mongdb_uri)

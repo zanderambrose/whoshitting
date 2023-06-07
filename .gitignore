@@ -2,3 +2,5 @@
 soup/
 mongodb/
 .DS_Store
+*.env
+
