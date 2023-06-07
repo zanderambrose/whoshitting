@@ -1,13 +1,12 @@
 import os
 from datetime import datetime
-from src.vanguard import Vanguard
-from src.smallslive import SmallsLive
-from src.birdland import Birdland
-from src.bluenote import BlueNote
-from src.dizzys import Dizzys
-from src.smoke import Smoke
-from src.scraper import WebScraper
-from pymongo import MongoClient
+from src.venues.vanguard import Vanguard
+from src.venues.smallslive import SmallsLive
+from src.venues.birdland import Birdland
+from src.venues.bluenote import BlueNote
+from src.venues.dizzys import Dizzys
+from src.venues.smoke import Smoke
+from src.venues.scraper import WebScraper
 
 # MongoDB connection details
 MONGO_HOST = 'mongo'
@@ -20,7 +19,7 @@ mongdb_uri = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_P
 
 
 if __name__ == "__main__":
-    mongo_client = MongoClient(mongdb_uri)
+    mongo_client = (mongdb_uri)
     db = mongo_client[MONGO_DB]
     collection = db[MONGO_COLLECTION]
     vanguard = WebScraper(collection, Vanguard(

@@ -11,5 +11,5 @@ class Artist(BaseModel):
 class VenueSchema(BaseModel):
     venu_name: str = Field(...)
     band_name: str = Field(...)
-    sideman: Listp[Artist]
+    sideman: List[Artist]
 

@@ -1,6 +1,5 @@
 import re
 from fastapi import FastAPI
-from pymongo import MongoClient
 
 # MongoDB connection details
 MONGO_HOST = 'mongo'
@@ -10,7 +9,7 @@ MONGO_COLLECTION = 'venue'
 MONGO_USERNAME = 'root'
 MONGO_PASSWORD = 'example'
 mongdb_uri = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}?authSource=admin"
-mongo_client = MongoClient(mongdb_uri)
+mongo_client = (mongdb_uri)
 db = mongo_client[MONGO_DB]
 collection = db[MONGO_COLLECTION]
 

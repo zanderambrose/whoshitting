@@ -23,4 +23,3 @@ soupsieve==2.4
 tomli==2.0.1
 urllib3==1.26.15
 webencodings==0.5.1
-pymongo[srv]

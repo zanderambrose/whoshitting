@@ -1,3 +1,4 @@
 *.pyc
 soup/
 mongodb/
+.DS_Store
