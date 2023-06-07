@@ -25,3 +25,4 @@ urllib3==1.26.15
 webencodings==0.5.1
 fastapi
 uvicorn[standard]
+motor==2.5.1
